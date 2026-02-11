@@ -2,6 +2,7 @@
 :: ============================================================
 :: Project: Fast Robocopy GUI - Advance
 :: Description: High-speed multithreaded copy tool for Windows
+:: Author: lakshaydhiman999
 :: License: MIT
 :: ============================================================
 
@@ -28,6 +29,8 @@ echo  [1] Folder Copy (Complete Directory)
 echo  [2] File Copy   (Single/Multiple Selection)
 echo  [3] Exit
 echo ===============================================
+echo  Developed by: lakshaydhiman999
+echo ===============================================
 set /p mode="Choose an option (1-3): "
 
 if "%mode%"=="1" goto FOLDER_MODE
@@ -46,6 +49,7 @@ for /f "delims=" %%I in ('powershell -NoProfile -Command "Add-Type -AssemblyName
 if "%dest%"=="" goto MENU
 
 for %%A in ("%source%") do set "fName=%%~nxA"
+:: Executing high-speed MT:32 command
 robocopy "%source%" "%dest%\%fName%" /MT:32 /E /ZB /ETA /R:3 /W:5
 goto END
 
